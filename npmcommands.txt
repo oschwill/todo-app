@@ -1,0 +1,55 @@
+1.) eine package.json erstellen => npm init -y
+2.) Webpack installieren => npm i -D webpack webpack-cli webpack-dev-server
+3.) eine .gitignore erstellen und node_modules einfügen
+4.) wenn wir npm i eingeben bekommen wir einige vulnerabilities => um das Problem zu lösen müssen wir im package.json folgende Zeile hinzufügen:
+    "private": true 
+    danach nochmal npm i und die Fehler sind weg
+5.) Wir kreieren eine webpack.config.js Datei im root Ordner und füllen sie, siehe Datei Inhalt
+6.) Wir installieren babel => npm i -D babel-loader @babel/core @babel/preset-env
+7.) wir kreieren eine babel.config.js Datei, siehe Datei Inhalt
+8.) Für css brauchen wir die CSS Loader => npm i -D css-loader mini-css-extract-plugin
+9.) Um SASS zu nutzen installieren wir den sass-loader => npm i -D sass sass-loader
+10.) Wir können auch postcss nutzen => npm i -D postcss postcss-preset-env postcss-loader
+11.) Danach erstellen wir ein post.config.js Datei und füllen sie, siehe Datei 
+12.) Nun erstellen wir eine .browserslistrc Datei, um festzulegen welche Browser supportet werden soll,
+     damit z.B. postcss sein css für ältere Browser anpasst, siehe Datei
+13.) image loader einrichten, dafür geben wir folgende line in die webpack.config.js ein:
+     test: /\.(png|jpe?g|gif|svg)$/i,
+     type: 'asset/resource'
+     Danach geben wir den Pfad an, wo die Bilder im build hereingeladen werden sollen
+     output: {
+        assetModuleFilename: 'images/[hash][ext][query]',
+     }
+14.) Um aber die Bilder nicht direkt zu speichern, sondern direkt in unser Javascript Bundlefile einzubinden ersetzten wir:
+     type: 'asset/resource' zu type: 'asset/inline'
+     Die sollte aber nur bei kleineren Bildern getan werden da die bundle file sonst zu groß wird, daher geben wir nur 
+!!!  type: 'asset' ein. Dadruch entscheidet es sich nach Größe ob das Bild inlined oder als Resource genutzt wird
+     Wir können die maxsize ab wann ein image einen path erhält und ab wann es in base64 konvertiert werden angeben, siehe Beispiel:
+     parser: {
+       dataUrlCondition: {
+       maxSize: 30 * 1024,
+       },
+     },
+15.) Nun installieren wir das html webpack plugin => npm i -D html-webpack-plugin
+     Danach importen wir das Plugin und starten es in plugins in der webpack.config.js Datei
+16.) nun erstellen wir in src eine html file. Diese html file mit den includes(link / script) wird dann im build automatisch erzeugt
+     Somit können wir problemlos unser clean script in gitignore nutzen ohne im Anschluss die html Datei immer wieder neu zu erzeugen
+     vorher müssen wir aber in der webpack.config.js noch folgendes hinzufügen(unter plugins), damit die exakt selbe index.html Datei erzeugt wird:
+     new HtmlWebpackPlugin({
+      template: './src/index.html',
+    })
+17.) Nun adden wir das clean webpack plugin das zuerst den dist Ordner löscht und dann neu builded => npm i -D clean-webpack-plugin
+     Wir importen das Plugin dann in unsere webpack.config.js Datei und führen dies mit:
+     new CleanWebpackPlugin() unter Plugins aus. Danach geben wir im Output noch einen Path an(der jederzeit änderbar ist, z.B. aus dist können wir public machen...usw.)
+     => path: path.resolve(__dirname, 'dist') => path includen wir oben
+
+/**HINWEIS
+* Für Windows System installieren wir cross-env => npm install --save-dev cross-env
+* in der package.json legen wir dann das Build Script wie folgt an:
+* "build": "cross-env NODE_ENV=production webpack"
+**/
+
+/** WEITERER HINWEIS
+* Wenn wir css als auch scss supporten wollen müssen wir in der webpack.config.js folgendes eingeben:
+* test: /\.(s[ac]|c)ss$/i   => überprüft dann ob er z.B. index.css oder index.scss oder index.sass laden soll
+ **/

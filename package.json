@@ -18,11 +18,17 @@
     "mini-css-extract-plugin": "^2.4.4",
     "postcss": "^8.3.11",
     "postcss-loader": "^6.2.0",
-    "postcss-preset-env": "^6.7.0",
+    "postcss-preset-env": "^9.1.4",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "webpack": "^5.64.1",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0"
-  }
+  },
+  "name": "TODO-APP",
+  "description": "",
+  "version": "1.0.0",
+  "main": "babel.config.js",
+  "author": "Olli S.",
+  "license": "ISC"
 }

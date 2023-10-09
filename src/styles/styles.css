@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+header {
+  height: 40vh;
+}
+
+.dark-header {
+  background: url('../images/bg-desktop-dark.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.light-header {
+  background: url('../images/bg-desktop-light.jpg') no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.head-content {
+  color: hsl(236, 33%, 92%);
+  margin: 0 30vw;
+  padding-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head-content h1 {
+  font-size: 2.6rem;
+  letter-spacing: 10px;
+}
+
+.head-content img {
+  height: 30px;
+  width: 30px;
+}
+
+main {
+  position: relative;
+  height: 60vh;
+  background-color: hsl(235, 21%, 11%); /**/
+}
+
+.main-body {
+  font-size: 1.8rem;
+  margin: 0 30vw;
+  color: hsl(236, 33%, 92%); /**/
+  border-radius: 10px;
+}
+
+.main-body input[type='text'] {
+  margin-bottom: 25px;
+  width: 100%;
+  appearance: none;
+  background-color: hsl(235, 24%, 19%); /**/
+  padding: 15px;
+}
+
+.main-body .output {
+  background-color: hsl(235, 24%, 19%); /**/
+}
+
+.main-body .output .item {
+  display: flex;
+  border-bottom: 1px solid hsl(233, 14%, 35%); /**/
+  padding: 15px;
+}
+
+.drag-dop {
+  color: hsl(234, 11%, 52%); /**/
+  text-align: center;
+  margin-top: 30px;
+}
+
+main .attribution {
+  font-size: 1.1rem;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%); /**/
+}

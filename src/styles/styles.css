@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+@font-face {
+  font-family: JosefinSans;
+  src: url('../fonts/JosefinSans-VariableFont_wght.ttf');
+}
 
 * {
   box-sizing: border-box;
@@ -15,7 +18,7 @@ html {
 }
 
 body {
-  font-family: 'Josefin+Sans';
+  font-family: JosefinSans, Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -126,7 +129,7 @@ main {
   border-bottom: 1px solid hsl(233, 14%, 35%); /**/
 }
 
-.main-body .input .check,
+.main-body .input .input-check,
 .main-body .output .item .check {
   -webkit-appearance: none;
   appearance: none;

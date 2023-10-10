@@ -3,17 +3,16 @@ import { isDark } from '../Model/theme';
 /* CONTAINER */
 const output = document.querySelector('.output');
 
-export const showContent = (contentArr) => {
+export const showAllContent = (contentArr, activeItems) => {
   // clear output
   output.innerHTML = '';
 
   // build controls
-  let uncompletedItems = contentArr.filter((c) => c.completed === false).length;
   const controls = `
     <div class="output-controls">
-          <p><span class="count">${uncompletedItems}</span> items left</p>
+          <p><span class="count">${activeItems}</span> items left</p>
           <div class="sort">
-            <p data="all">All</p>
+            <p data="all" class="clicked-active">All</p>
             <p data="active">Active</p>
             <p data="complete">Completed</p>
           </div>
@@ -27,7 +26,7 @@ export const showContent = (contentArr) => {
     return `
       <div class="item ${isDark ? 'dark-border' : 'light-border'}" key="${item.id}">
           <input type="checkbox" class="check">
-          <span>${item.content}</span>
+          <span class="${item.completed ? 'line-trough' : ''}">${item.content}</span>
       </div>    
     `;
   });

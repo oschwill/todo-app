@@ -56,20 +56,24 @@ header {
 main {
   position: relative;
   height: 60vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .dark-main {
   background-color: hsl(235, 21%, 11%); /**/
+  transition: all linear 0.25s;
 }
 
 .light-main {
   background-color: hsl(236, 33%, 92%); /**/
+  transition: all linear 0.25s;
 }
 
 .main-body {
   font-size: 1.5rem;
   margin: 0 30vw;
-  border-radius: 10px;
+  margin-top: -115px;
 }
 
 .main-body .input {
@@ -93,6 +97,11 @@ main {
 .light-list {
   background-color: hsl(0, 0%, 98%);
   color: hsl(235, 19%, 35%);
+}
+
+.dark-list,
+.light-list {
+  border-radius: 5px;
 }
 
 .main-body .input input[type='text'] {
@@ -184,4 +193,9 @@ main .attribution {
 
 .clicked-active {
   color: hsl(220, 98%, 61%);
+}
+
+.line-trough {
+  text-decoration: line-through;
+  color: hsl(236, 9%, 61%);
 }

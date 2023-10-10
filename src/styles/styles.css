@@ -48,8 +48,9 @@ header {
 }
 
 .head-content img {
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
 }
 
 main {
@@ -179,4 +180,8 @@ main .attribution {
 
 .attribution a {
   color: hsl(228, 45%, 44%); /**/
+}
+
+.clicked-active {
+  color: hsl(220, 98%, 61%);
 }

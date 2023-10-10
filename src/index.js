@@ -1,8 +1,15 @@
+/* UI */
+import setTheme from './Model/theme';
+/* SVG */
 import sun from './images/icon-sun.svg';
+import moon from './images/icon-moon.svg';
+/* CSS */
 import styles from './styles/styles.css';
 
-console.log(sun);
+const init = () => {
+  // set start theme
+  setTheme(sun, 'dark');
+};
 
-const header = document.querySelector('.head-content');
-
-header.insertAdjacentHTML('beforeend', `<img src="${sun}" >`);
+// RUN
+init();

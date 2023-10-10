@@ -17,22 +17,38 @@
       <!-- SVG TOGGLE PICTURE -->
     </div>
   </header>
-  <main>
+  <main class="dark-main">
 
     <div class="main-body">
-      <input type="text">
-      <div class="output">
-        <div class="item">
+      <div class="input">
+        <input type="checkbox" class="check">
+        <input type="text" placeholder="Create a new todo..." class="dark-list">
+
+      </div>
+      <div class="output dark-list">
+        <div class="item dark-border">
           <input type="checkbox" class="check">
           <span>Hallo hier</span>
         </div>
-        <div class="item">
+        <div class="item dark-border">
           <input type="checkbox" class="check">
           <span>Blablub bli</span>
         </div>
-        <div class="item">
+        <div class="item dark-border">
           <input type="checkbox" class="check">
           <span>Hallo und so</span>
+        </div>
+
+        <div class="output-controls">
+          <p><span class="count">1</span> items left</p>
+          <div class="sort">
+            <p data="all">All</p>
+            <p data="active">Active</p>
+            <p data="complete">Completed</p>
+          </div>
+          <div class="clear">
+            <p data="clear-completed">Clear Completed</p>
+          </div>
         </div>
 
       </div>

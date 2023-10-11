@@ -42,13 +42,11 @@ input.addEventListener('keypress', (e) => {
     // set the new content
     setData(inputVal);
 
-    // output all content
-    showContent(getAllData(), getActiveData().length);
-
     // clear input
     input.value = '';
 
-    createCheckBoxEvents();
+    // output all content
+    process({ data: getAllData(), itemCount: getActiveData().length });
   }
 });
 
@@ -58,21 +56,24 @@ observeElement('#all').then((all) => {
   const complete = document.querySelector('#complete');
 
   all.addEventListener('click', (e) => {
-    showContent(getAllData(), getActiveData().length);
-    createCheckBoxEvents();
-    setActiveState({ first: active, second: complete }, all);
+    process(
+      { data: getAllData(), itemCount: getActiveData().length },
+      setActiveState({ first: active, second: complete }, all)
+    );
   });
 
   active.addEventListener('click', () => {
-    showContent(getActiveData(), getActiveData().length);
-    createCheckBoxEvents();
-    setActiveState({ first: all, second: complete }, active);
+    process(
+      { data: getActiveData(), itemCount: getActiveData().length },
+      setActiveState({ first: all, second: complete }, active)
+    );
   });
 
   complete.addEventListener('click', () => {
-    showContent(getCompletedData(), getActiveData().length);
-    createCheckBoxEvents();
-    setActiveState({ first: all, second: active }, complete);
+    process(
+      { data: getCompletedData(), itemCount: getActiveData().length },
+      setActiveState({ first: all, second: active }, complete)
+    );
   });
 });
 
@@ -86,14 +87,12 @@ function completeTodo() {
 
     // check wich current state for refreshing content
     if (currentState === 'active') {
-      showContent(getActiveData(), getActiveData().length);
-      createCheckBoxEvents();
+      process({ data: getActiveData(), itemCount: getActiveData().length });
       return;
     }
 
     if (currentState === 'complete') {
-      showContent(getCompletedData(), getActiveData().length);
-      createCheckBoxEvents();
+      process({ data: getCompletedData(), itemCount: getActiveData().length });
       return;
     }
   } catch (error) {
@@ -107,4 +106,11 @@ const createCheckBoxEvents = () => {
   allCheckboxes.forEach((el) => el.removeEventListener('click', completeTodo));
   // add all Eventlistener on nodelist
   allCheckboxes.forEach((el) => el.addEventListener('click', completeTodo));
+};
+
+const process = (dataObj, callback) => {
+  showContent(dataObj.data, dataObj.itemCount);
+  createCheckBoxEvents();
+
+  if (typeof callback == 'function') callback();
 };

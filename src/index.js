@@ -1,12 +1,14 @@
 /* MODEL FUNCTIONS */
 import setTheme, { input } from './Model/theme';
-import { getAllData, setData, getActiveData, getCompletedData } from './Model/data';
+import { getAllData, setData, getActiveData, getCompletedData, editData } from './Model/data';
+import observeElement from './Model/observer';
 /* MODEL CONTAINER */
 import { headerContent } from './Model/theme';
 /* VIEW FUNCTIONS */
-import { showAllContent } from './View/output';
-/* VIEW CONTAINER */
-import { checkBox } from './View/output';
+import { showContent, toggleCompleteContent, buildControls, setActiveState } from './View/output';
+/* VIEW PROPERTY */
+import { currentState } from './View/output';
+
 /* SVG */
 import sun from './images/icon-sun.svg';
 import moon from './images/icon-moon.svg';
@@ -16,6 +18,7 @@ import styles from './styles/styles.css';
 const init = () => {
   // set start theme
   setTheme({ sun, moon }, 'dark');
+  buildControls();
 };
 
 // RUN
@@ -40,37 +43,68 @@ input.addEventListener('keypress', (e) => {
     setData(inputVal);
 
     // output all content
-    showAllContent(getAllData(), getActiveData().length);
+    showContent(getAllData(), getActiveData().length);
 
     // clear input
     input.value = '';
-  }
 
-  return;
+    createCheckBoxEvents();
+  }
+});
+
+/* OBSERVER */
+observeElement('#all').then((all) => {
+  const active = document.querySelector('#active');
+  const complete = document.querySelector('#complete');
+
+  all.addEventListener('click', (e) => {
+    showContent(getAllData(), getActiveData().length);
+    createCheckBoxEvents();
+    setActiveState({ first: active, second: complete }, all);
+  });
+
+  active.addEventListener('click', () => {
+    showContent(getActiveData(), getActiveData().length);
+    createCheckBoxEvents();
+    setActiveState({ first: all, second: complete }, active);
+  });
+
+  complete.addEventListener('click', () => {
+    showContent(getCompletedData(), getActiveData().length);
+    createCheckBoxEvents();
+    setActiveState({ first: all, second: active }, complete);
+  });
 });
 
 /* FUNCTIONS */
-function waitForElm(selector) {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
+function completeTodo() {
+  try {
+    // modify Data
+    editData(this.parentNode.getAttribute('key'));
+    // modify UI
+    toggleCompleteContent(this.nextElementSibling, getActiveData().length);
+
+    // check wich current state for refreshing content
+    if (currentState === 'active') {
+      showContent(getActiveData(), getActiveData().length);
+      createCheckBoxEvents();
+      return;
     }
 
-    const observer = new MutationObserver((mutations) => {
-      if (document.querySelector(selector)) {
-        observer.disconnect();
-        resolve(document.querySelector(selector));
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-  });
+    if (currentState === 'complete') {
+      showContent(getCompletedData(), getActiveData().length);
+      createCheckBoxEvents();
+      return;
+    }
+  } catch (error) {
+    alert(error);
+  }
 }
 
-waitForElm('.check').then((elm) => {
-  console.log('Element is ready');
-  console.log(elm.parentElement);
-});
+const createCheckBoxEvents = () => {
+  const allCheckboxes = document.querySelectorAll('.check');
+  //  remove all Eventlistener from nodelist
+  allCheckboxes.forEach((el) => el.removeEventListener('click', completeTodo));
+  // add all Eventlistener on nodelist
+  allCheckboxes.forEach((el) => el.addEventListener('click', completeTodo));
+};

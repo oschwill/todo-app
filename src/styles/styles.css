@@ -188,6 +188,7 @@ main .attribution {
   position: fixed;
   bottom: 0;
   width: 100%;
+  color: grey;
 }
 
 .attribution a {

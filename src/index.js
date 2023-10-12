@@ -83,6 +83,7 @@ observeElement('#all').then((all) => {
       setActiveState({ first: all, second: active }, complete)
     );
   });
+
   clearCompleted.addEventListener('click', () => {
     clearAllCompletedData();
     if (currentState === 'complete') {

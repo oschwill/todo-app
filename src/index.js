@@ -13,7 +13,13 @@ import observeElement from './Model/observer';
 /* MODEL CONTAINER */
 import { headerContent } from './Model/theme';
 /* VIEW FUNCTIONS */
-import { showContent, toggleCompleteContent, buildControls, setActiveState } from './View/output';
+import {
+  showContent,
+  toggleCompleteContent,
+  buildControls,
+  setActiveState,
+  removeItem,
+} from './View/output';
 /* VIEW PROPERTY */
 import { currentState } from './View/output';
 
@@ -125,8 +131,10 @@ function completeTodo() {
 function clearSingleData() {
   // clear row
   let element = this.parentNode;
-
   clearDataRow(element.getAttribute('key'));
+
+  // clear element in dom
+  removeItem(element);
 }
 
 const createEvents = () => {

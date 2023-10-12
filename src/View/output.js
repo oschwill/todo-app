@@ -70,3 +70,5 @@ export const setActiveState = (stateObj, activeState) => {
   // set current state
   currentState = activeState.id !== 'all' ? activeState.id : null;
 };
+
+export const removeItem = (element) => element.remove();

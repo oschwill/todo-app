@@ -32,8 +32,7 @@ export const clearAllCompletedData = () =>
   (contentData = contentData.filter((val) => val.completed === false));
 
 export const clearDataRow = (id) => {
-  console.log('first');
-  contentData = contentData.filter((val) => val.id !== id);
+  contentData = contentData.filter((val) => val.id !== Number(id));
   console.log(contentData);
 };
 

@@ -53,7 +53,10 @@ input.addEventListener('keypress', (e) => {
     input.value = '';
 
     // output all content
-    process({ data: getAllData(), itemCount: getActiveData().length });
+    process(
+      { data: getAllData(), itemCount: getActiveData().length },
+      setActiveState({ first: complete, second: active }, all)
+    );
   }
 });
 
@@ -90,6 +93,8 @@ observeElement('#all').then((all) => {
       process({ data: getCompletedData(), itemCount: getActiveData().length });
       return;
     }
+
+    process({ data: getAllData(), itemCount: getActiveData().length });
   });
 });
 

@@ -28,6 +28,9 @@ export const editData = (key) => {
   });
 };
 
+export const clearAllCompletedData = () =>
+  (contentData = contentData.filter((val) => val.completed === false));
+
 export const getAllData = () => contentData;
 export const getActiveData = () => contentData.filter((c) => c.completed === false);
 export const getCompletedData = () => contentData.filter((c) => c.completed === true);

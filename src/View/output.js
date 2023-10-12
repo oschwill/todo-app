@@ -49,7 +49,7 @@ export const buildControls = () => {
         <p data="complete" id="complete">Completed</p>
       </div>
       <div class="clear">
-        <p data="clear-completed">Clear Completed</p>
+        <p data="clear-completed" id="clear-completed">Clear Completed</p>
       </div>
     </div>
   `;

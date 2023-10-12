@@ -1,6 +1,13 @@
 /* MODEL FUNCTIONS */
 import setTheme, { input } from './Model/theme';
-import { getAllData, setData, getActiveData, getCompletedData, editData } from './Model/data';
+import {
+  getAllData,
+  setData,
+  getActiveData,
+  getCompletedData,
+  editData,
+  clearAllCompletedData,
+} from './Model/data';
 import observeElement from './Model/observer';
 /* MODEL CONTAINER */
 import { headerContent } from './Model/theme';
@@ -54,6 +61,7 @@ input.addEventListener('keypress', (e) => {
 observeElement('#all').then((all) => {
   const active = document.querySelector('#active');
   const complete = document.querySelector('#complete');
+  const clearCompleted = document.querySelector('#clear-completed');
 
   all.addEventListener('click', (e) => {
     process(
@@ -74,6 +82,13 @@ observeElement('#all').then((all) => {
       { data: getCompletedData(), itemCount: getActiveData().length },
       setActiveState({ first: all, second: active }, complete)
     );
+  });
+  clearCompleted.addEventListener('click', () => {
+    clearAllCompletedData();
+    if (currentState === 'complete') {
+      process({ data: getCompletedData(), itemCount: getActiveData().length });
+      return;
+    }
   });
 });
 

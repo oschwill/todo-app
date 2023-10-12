@@ -156,6 +156,13 @@ main {
   padding-left: 20px;
 }
 
+.main-body .output .item .clear-item {
+  font-size: 2.5rem;
+  margin-left: auto;
+  color: hsl(233, 14%, 35%);
+  cursor: pointer;
+}
+
 .output-controls {
   color: hsl(233, 14%, 35%);
   justify-content: space-between;
@@ -172,7 +179,8 @@ main {
 }
 
 .output-controls .sort p:hover,
-.output-controls .clear p:hover {
+.output-controls .clear p:hover,
+.main-body .output .item .clear-item:hover {
   color: var(--hover-color);
 }
 

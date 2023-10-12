@@ -7,6 +7,7 @@ import {
   getCompletedData,
   editData,
   clearAllCompletedData,
+  clearDataRow,
 } from './Model/data';
 import observeElement from './Model/observer';
 /* MODEL CONTAINER */
@@ -121,17 +122,27 @@ function completeTodo() {
   }
 }
 
-const createCheckBoxEvents = () => {
+function clearSingleData() {
+  // clear row
+  let element = this.parentNode;
+
+  clearDataRow(element.getAttribute('key'));
+}
+
+const createEvents = () => {
   const allCheckboxes = document.querySelectorAll('.check');
+  const clearSingleTodos = document.querySelectorAll('.clear-item');
   //  remove all Eventlistener from nodelist
   allCheckboxes.forEach((el) => el.removeEventListener('click', completeTodo));
+  clearSingleTodos.forEach((el) => el.removeEventListener('click', clearSingleData));
   // add all Eventlistener on nodelist
   allCheckboxes.forEach((el) => el.addEventListener('click', completeTodo));
+  clearSingleTodos.forEach((el) => el.addEventListener('click', clearSingleData));
 };
 
 const process = (dataObj, callback) => {
   showContent(dataObj.data, dataObj.itemCount);
-  createCheckBoxEvents();
+  createEvents();
 
   if (typeof callback == 'function') callback();
 };

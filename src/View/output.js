@@ -30,6 +30,7 @@ const buildContent = (contentArr, activeItems) => {
       <div class="item ${isDark ? 'dark-border' : 'light-border'}" key="${item.id}">
           <input type="checkbox" class="check" ${item.completed ? 'checked' : ''}>
           <span class="${item.completed ? 'line-trough' : ''}">${item.content}</span>
+          <span class="clear-item">x</span>
       </div>    
     `;
   });

@@ -9,6 +9,7 @@ import {
   clearAllCompletedData,
   clearDataRow,
 } from './Model/data';
+import { dragList, handleDragStart, handleDragOver, handleDrop } from './Model/itemmover';
 import observeElement from './Model/observer';
 /* MODEL CONTAINER */
 import { headerContent } from './Model/theme';
@@ -40,6 +41,10 @@ init();
 
 /* EVENTLISTENER */
 headerContent.addEventListener('click', (e) => {
+  if (e.target.localName !== 'img') {
+    return;
+  }
+
   let themeType = headerContent.lastChild.attributes.data.value;
 
   // set theme
@@ -66,6 +71,11 @@ input.addEventListener('keypress', (e) => {
     );
   }
 });
+
+// Add event listeners for drag and drop events
+dragList.addEventListener('dragstart', handleDragStart);
+dragList.addEventListener('dragover', handleDragOver);
+dragList.addEventListener('drop', handleDrop);
 
 /* OBSERVER */
 observeElement('#all').then((all) => {

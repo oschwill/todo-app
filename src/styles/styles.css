@@ -25,6 +25,15 @@ header {
   height: 40vh;
 }
 
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
 .dark-header {
   background: url('../images/bg-desktop-dark.jpg') no-repeat;
   background-position: center;

@@ -27,7 +27,9 @@ export const toggleCompleteContent = (element, activeItems) => {
 const buildContent = (contentArr, activeItems) => {
   const contentItems = contentArr.map((item) => {
     return `
-      <div class="item ${isDark ? 'dark-border' : 'light-border'}" key="${item.id}">
+      <div class="item ${isDark ? 'dark-border' : 'light-border'}" key="${
+      item.id
+    }" draggable="true">
           <input type="checkbox" class="check" ${item.completed ? 'checked' : ''}>
           <span class="${item.completed ? 'line-trough' : ''}">${item.content}</span>
           <span class="clear-item">x</span>

@@ -47,12 +47,12 @@ export const buildControls = () => {
     <div class="output-controls">
       <p><span class="count">0</span> items left</p>
       <div class="sort">
-        <p data="all" class="clicked-active" id="all">All</p>
-        <p data="active" id="active">Active</p>
-        <p data="complete" id="complete">Completed</p>
+        <p class="clicked-active" id="all">All</p>
+        <p id="active">Active</p>
+        <p id="complete">Completed</p>
       </div>
       <div class="clear">
-        <p data="clear-completed" id="clear-completed">Clear Completed</p>
+        <p id="clear-completed">Clear Completed</p>
       </div>
     </div>
   `;
